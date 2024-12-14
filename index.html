@@ -49,7 +49,7 @@
     </button>
     <a href="#home">HOME</a>
     <a href="#about">ABOUT ME</a>
-    <a href="#contacts">CONTACTS</a>
+    <a href="contacts.html">CONTACTS</a>
 </div>
 
 <!-- ABOUT ME -->
@@ -272,18 +272,25 @@
         function updateNavbar() {
             const navbar = document.querySelector('.navbar');
             
-            // Scrolling down
+            // Se siamo all'inizio della pagina, mostra sempre la navbar
+            if (window.scrollY === 0) {
+                navbar.classList.remove('hidden');
+                return;
+            }
+            
+            // Altrimenti, applica la logica dello scroll
             if (lastScrollY < window.scrollY) {
                 navbar.classList.add('hidden');
-            } 
-            // Scrolling up
-            else {
+            } else {
                 navbar.classList.remove('hidden');
             }
 
             lastScrollY = window.scrollY;
             ticking = false;
         }
+
+        // Controlla la posizione iniziale
+        updateNavbar();
 
         window.addEventListener('scroll', () => {
             if (!ticking) {
