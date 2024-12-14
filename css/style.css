@@ -180,18 +180,20 @@
     .heroSection {
         position: fixed;
         height: 100vh;
+        width: 100%;
         top: 0;
         bottom: 0;
         right: 0;
-        left: 25%;
+        left: 0;
         background-color: #101010;
+        overflow: hidden;
     }
 
     .heroImage {
         width: 100%;
         height: 100%;
-        aspect-ratio: 1.5;
         object-fit: cover;
+        object-position: center;
     }
 
     .heroShadow{
@@ -241,7 +243,7 @@
     .navbar {
         right: 0;
         left: 0;
-        position: absolute;
+        position: fixed;
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 5%;
@@ -249,6 +251,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        z-index: 99;
     }
 
     .navbarLogo {
@@ -606,8 +609,9 @@
 
 @media all and (max-width: 767px) {
     .heroSection {
-        left: 0%;
+        left: 0;
         right: 0;
+        width: 100%;
     }
 
     .heroImage {
@@ -633,7 +637,7 @@
 
     .heroTitle {
         margin-top: auto;
-        margin-bottom: 10em;
+        margin-bottom: 8em;
     }
 
     .heroTitleImage {
@@ -647,7 +651,7 @@
     }
 
     .navbar {
-        padding-left: 9%;
+        padding-left: 10px;
     }
 
     .navbarMenu {
