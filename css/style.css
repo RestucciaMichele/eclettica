@@ -269,6 +269,13 @@
         background-color: #d4d4d400;
         height: 2.75rem;
         margin-right: 30px;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 1;
+    }
+
+    .navbarMenu.hidden {
+        opacity: 0;
+        pointer-events: none;
     }
 
     .navbarMenu:hover {
@@ -492,10 +499,31 @@
 
     .side-menu .close-btn {
         position: absolute;
-        top: 20px;
-        right: 25px;
+        top: 55px;                /* Allineato con il padding-top della navbar */
+        right: 25px;              /* Allineato con il padding-right della navbar */
         font-size: 36px;
         padding: 0;
+        width: 2.75rem;           /* Stessa larghezza del menu burger */
+        height: 2.75rem;          /* Stessa altezza del menu burger */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #e7e5e4;
+        border-top-style: none;
+        border-right-style: none;
+        border-left-style: none;
+        border-bottom-style: none;
+        border-top-color: #e1e8f000;
+        border-right-color: #e1e8f000;
+        border-bottom-color: #e1e8f000;
+        border-left-color: #e1e8f000;
+        background-color: #d4d4d400;
+        margin-right: 30px;
+    }
+
+    .side-menu .close-btn:hover {
+        color: #d2b758;
     }
 
     .side-menu.open {
@@ -543,6 +571,10 @@
 
     .storyText, .story2Text {
         font-size: 1.1rem;
+    }
+
+    .side-menu .close-btn {
+        height: 2rem;
     }
 }
 
@@ -646,6 +678,12 @@
     .storyBoxText, .story2BoxText {
         order: 1;
     }
+
+    .side-menu .close-btn {
+        height: 1.7rem;       /* Stessa altezza del menu burger in mobile */
+        width: 1.7rem;
+        right: 20px;
+    }
 }
 
 @media all and (max-width: 479px) {
@@ -701,6 +739,10 @@
     .storyText, .story2Text {
         margin-left: 0rem;
         margin-right: 0rem;
+    }
+
+    .side-menu .close-btn {
+        right: 5px;          /* Allineato con il margin-right del menu burger in mobile */
     }
 }
 

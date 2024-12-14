@@ -204,7 +204,15 @@
 
 <!-- OPEN MENU -->
         <div id="sideMenu" class="side-menu">
-            <a href="#" class="close-btn" onclick="toggleMenu()">&times;</a>
+            <button class="close-btn" onclick="toggleMenu()">
+                <div class="w-html-embed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </div>
+            </button>
             <a href="#home">HOME</a>
             <a href="#about">ABOUT ME</a>
             <a href="#contacts">CONTACTS</a>
@@ -280,15 +288,17 @@
     <script>
         function toggleMenu() {
             const menu = document.getElementById('sideMenu');
+            const menuButton = document.querySelector('.navbarMenu');
             const body = document.body;
             
             menu.classList.toggle('open');
+            menuButton.classList.toggle('hidden');
             
             // Toggle body scroll
             if (menu.classList.contains('open')) {
-                body.style.overflow = 'hidden'; // Disabilita lo scroll
+                body.style.overflow = 'hidden';
             } else {
-                body.style.overflow = 'auto';   // Abilita lo scroll
+                body.style.overflow = 'auto';
             }
         }
 
