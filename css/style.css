@@ -163,27 +163,52 @@ body {
 
 /* NAVBAR */
 .navbar {
-    position: absolute;
-    inset: 0 0 auto 0;
-    padding: 10px 20px 10px 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
 }
 
 .navbarLogo {
+    display: block;
     width: 80px;
     height: auto;
 }
 
+.navbarLogoImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .navbarMenu {
-    color: #e7e5e4;
-    border: none;
-    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
     height: 2.75rem;
-    margin-right: 30px;
-    transition: opacity 0.3s ease-in-out;
-    opacity: 1;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #e7e5e4;
+    cursor: pointer;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.navbarMenu svg {
+    width: 100%;
+    height: 100%;
 }
 
 .navbarMenu:hover {
@@ -500,11 +525,14 @@ body {
         line-height: .5;
     }
     .navbar {
-        padding-left: 9%;
+        padding: 0.75rem 1rem;
+    }
+    .navbarLogo {
+        width: 60px;
     }
     .navbarMenu {
-        height: 1.7rem;
-        margin-right: 20px;
+        width: 2rem;
+        height: 2rem;
     }
     .aboutInnerBoxTitle {
         font-size: 2.2em;
@@ -548,7 +576,10 @@ body {
         font-size: 2.25em;
     }
     .navbar {
-        padding-right: 10px;
+        padding: 0.5rem;
+    }
+    .navbarLogo {
+        width: 50px;
     }
     .navbarMenu {
         margin-right: 10px;
