@@ -1,6 +1,7 @@
 /* GENERAL SETTINGS */
 html {
     scroll-behavior: smooth;
+    background-color: #101010;
 }
 
 ::-webkit-scrollbar, 
@@ -306,7 +307,7 @@ body {
 
 .aboutInnerContent {
     position: relative;
-    max-width: 1280px;
+    max-width: 1680px;
     margin-left: auto;
     margin-right: auto;
     z-index: 2;
@@ -480,6 +481,7 @@ body {
     padding: 120px 2rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 100px; /* Altezza della navbar */
 }
 
 .section-title {
@@ -566,6 +568,54 @@ body {
         flex-direction: column;
         text-align: center;
         gap: 0.5rem;
+    }
+}
+
+/* STILI PER LA PAGINA CONTATTI */
+
+/* Contenitore principale */
+.contacts-content {
+    /* ...existing code... */
+    padding: 2rem;
+    margin-top: 100px; /* Altezza della navbar */
+}
+
+/* Sezioni superiore e inferiore */
+.contact-top, .contact-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* Colonne sinistra e destra */
+.contact-left, .contact-right {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Immagine del negozio */
+.contact-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
+
+/* Sezioni individuali */
+.contact-section, .hours-section, .map-section {
+    background-color: #252525;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+/* Adattamento per schermi piccoli */
+@media (max-width: 991px) {
+    .contact-top, .contact-bottom {
+        flex-direction: column;
+    }
+    .contact-left, .contact-right {
+        min-width: auto;
     }
 }
 
