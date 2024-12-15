@@ -312,13 +312,12 @@
 
         function updateNavbar() {
             const navbar = document.querySelector('.navbar');
-            
-            // Scrolling down
-            if (lastScrollY < window.scrollY) {
+
+            if (window.scrollY === 0) {
+                navbar.classList.remove('hidden');
+            } else if (lastScrollY < window.scrollY) {
                 navbar.classList.add('hidden');
-            } 
-            // Scrolling up
-            else {
+            } else {
                 navbar.classList.remove('hidden');
             }
 
