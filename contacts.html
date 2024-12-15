@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti - Eclettica</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="w-body bodyContent">
+    <div class="w-box bodyInnerContent">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <a href="index.html" class="navbarLogo">
+                <img alt="Eclettica Logo" src="images/giusy.png" class="navbarLogoImage" />
+            </a>
+            <button type="button" class="navbarMenu" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+                    <path fill="currentColor" d="M56 48c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 48 54.798 48 56 48zM56 32c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 32 54.798 32 56 32zM56 16c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 16 54.798 16 56 16z"/>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- SIDE MENU -->
+        <div id="sideMenu" class="side-menu">
+            <button class="close-btn" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <a href="index.html#home">HOME</a>
+            <a href="index.html#about">ABOUT ME</a>
+            <a href="contacts.html">CONTACTS</a>
+        </div>
+
+        <!-- CONTACTS CONTENT -->
+        <div class="contacts-content">
+            <!-- Contact Methods Section -->
+            <section class="contact-section">
+                <h2 class="section-title">Contattaci</h2>
+                <div class="contact-methods">
+                    <a href="https://www.instagram.com/eclettica___/" class="contact-method" target="_blank">
+                        <i class="contact-icon">Instagram</i>
+                        <span class="contact-label">@eclettica___</span>
+                    </a>
+                    <a href="https://www.facebook.com/giusy.porru.3/" class="contact-method" target="_blank">
+                        <i class="contact-icon">Facebook</i>
+                        <span class="contact-label">Giusy Porru</span>
+                    </a>
+                    <a href="mailto:giusy.porru@libero.it" class="contact-method">
+                        <i class="contact-icon">Email</i>
+                        <span class="contact-label">giusy.porru@libero.it</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Store Hours Section -->
+            <section class="hours-section">
+                <h2 class="section-title">Orari di apertura</h2>
+                <div class="store-hours">
+                    <div class="hours-row">
+                        <span class="day">Lunedì - Venerdì</span>
+                        <span class="time">9:30 - 12:30 | 15:30 - 19:00</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Sabato</span>
+                        <span class="time">9:30 - 12:30</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Domenica</span>
+                        <span class="time">Chiuso</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section class="map-section">
+                <h2 class="section-title">Dove siamo</h2>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.8876145397165!2d9.320844776891752!3d45.35751177107373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c4e04dca3ee1%3A0x6a7c47e5c6c42dd1!2sVia%20Giuseppe%20Mazzini%2C%2020077%20Melegnano%20MI!5e0!3m2!1sen!2sit!4v1689241427428!5m2!1sen!2sit"
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="address">
+                    <p>Via Giuseppe Mazzini, Melegnano (MI)</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        // ... stesso JavaScript della home page ...
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            const menuButton = document.querySelector('.navbarMenu');
+            const body = document.body;
+            
+            menu.classList.toggle('open');
+            menuButton.classList.toggle('hidden');
+            
+            if (menu.classList.contains('open')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = 'auto';
+            }
+        }
+
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (lastScrollY < window.scrollY) {
+                navbar.classList.add('hidden');
+            } else {
+                navbar.classList.remove('hidden');
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateNavbar();
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
