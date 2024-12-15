@@ -183,13 +183,34 @@ body {
 .navbarLogo {
     display: block;
     width: 80px;
-    height: auto;
+    height: 80px;
+    position: relative;
 }
 
 .navbarLogoImage {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* rimossa la transition */
+}
+
+.navbarLogoImage.white {
+    opacity: 1;
+}
+
+.navbarLogoImage.gold {
+    opacity: 0;
+}
+
+.navbarLogo:hover .navbarLogoImage.white {
+    opacity: 0;
+}
+
+.navbarLogo:hover .navbarLogoImage.gold {
+    opacity: 1;
 }
 
 .navbarMenu {
@@ -551,7 +572,7 @@ body {
 /* MEDIA QUERIES */
 @media (max-width: 1440px) {
     .heroTitleImage { max-width: 30%; }
-    .navbarLogo { width: 70px; }
+    .navbarLogo { width: 80px; height: 80px; }
     .navbarMenu, .side-menu .close-btn { height: 2rem; }
     .aboutInnerBoxTitle {
         font-size: 2.5em;
@@ -618,12 +639,8 @@ body {
         font-size: 2.45em;
         line-height: .5;
     }
-    .navbar {
-        padding: 0.75rem 1rem;
-    }
-    .navbarLogo {
-        width: 60px;
-    }
+
+
     .navbarMenu {
         width: 2rem;
         height: 2rem;
@@ -669,12 +686,7 @@ body {
     .heroTitleText {
         font-size: 2.25em;
     }
-    .navbar {
-        padding: 0.5rem;
-    }
-    .navbarLogo {
-        width: 50px;
-    }
+
     .navbarMenu {
         margin-right: 10px;
     }

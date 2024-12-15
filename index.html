@@ -1,34 +1,73 @@
 <!DOCTYPE html>
-<html lang="it">
-
+<html lang="it" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sito Responsive</title>
+    <title>Eclettica</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="Eclettica: atelier di moda e musica a Melegnano dal 1965. Creazioni uniche che fondono arte, musica e moda. Ogni pezzo è fatto a mano con passione e creatività.">
+    <meta name="keywords" content="eclettica, atelier, moda, musica, Melegnano, made in Italy, fashion, handmade, sartoria">
+    <meta name="author" content="Giusy Porru">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Eclettica">
+    <meta property="og:description" content="Atelier di moda e musica a Melegnano. Creazioni uniche fatte a mano">
+    <meta property="og:image" content="https://eclettica.design/images/og-image.jpg">
+    <meta property="og:url" content="https://eclettica.design">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eclettica">
+    <meta name="twitter:description" content="Atelier di moda e musica a Melegnano. Creazioni uniche fatte a mano">
+    <meta name="twitter:image" content="https://eclettica.design/images/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="images/favicon/favicon.ico">
+    <meta name="theme-color" content="#101010">
+    
+    <!-- Preload -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="images/hero_image.jpg" as="image">
+    <link rel="preload" href="images/eclettica_oro.svg" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="w-body bodyContent">
-    <div class="w-box bodyInnerContent">
+    <div class="w-box bodyInnerContent" role="main">
 
 <!-- HOME -->
-        <div id="home" class="w-box homeContent">
-            <div class="w-box heroSection">
-                <img alt="" src="images/DSC02857.jpg" class="w-image heroImage" decoding="async" loading="eager" />
+        <div id="home" class="w-box homeContent" role="region" aria-label="Home">
+            <div class="w-box heroSection" role="img" aria-label="Immagine principale dell'atelier">
+                <img alt="Interno dell'atelier Eclettica con creazioni esclusive in mostra" src="images/hero_image.jpg" class="w-image heroImage" decoding="async" loading="eager" />
             </div>
-            <div class="w-box heroOverlay">
+            <div class="w-box heroOverlay" aria-hidden="true">
                 <div class="w-box heroTitle">
-                    <img alt="" src="images/eclettica_oro.svg" class="w-image heroTitleImage" decoding="async" loading="eager" />
+                    <img alt="Logo Eclettica in oro" src="images/eclettica_oro.svg" class="w-image heroTitleImage" decoding="async" loading="eager" />
                     <h1 class="w-heading heroTitleText">dal 1965</h1>
                 </div>
             </div>
 
             <!-- NAVBAR -->
-            <nav class="navbar">
-                <a href="#home" class="navbarLogo">
-                    <img alt="Eclettica Logo" src="images/giusy.png" class="navbarLogoImage" />
+            <nav class="navbar" role="navigation" aria-label="Menu principale">
+                <a href="#home" class="navbarLogo" aria-label="Torna alla home">
+                    <img alt="Eclettica Logo" src="images/logo_giusy_oro.png" class="navbarLogoImage gold" />
+                    <img alt="Eclettica Logo" src="images/logo_giusy_bianco.png" class="navbarLogoImage white" />
                 </a>
-                <button type="button" class="navbarMenu" onclick="toggleMenu()">
+                <button type="button" class="navbarMenu" onclick="toggleMenu()" aria-expanded="false" aria-controls="sideMenu" aria-label="Apri menu">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
                         <path fill="currentColor" d="M56 48c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 48 54.798 48 56 48zM56 32c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 32 54.798 32 56 32zM56 16c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 16 54.798 16 56 16z"/>
                     </svg>
@@ -37,8 +76,8 @@
         </div>
 
 <!-- OPEN MENU -->
-<div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="toggleMenu()">
+<div id="sideMenu" class="side-menu" role="dialog" aria-label="Menu di navigazione" aria-hidden="true">
+    <button class="close-btn" onclick="toggleMenu()" aria-label="Chiudi menu">
         <div class="w-html-embed">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -47,18 +86,19 @@
             </svg>
         </div>
     </button>
-    <a href="#home">HOME</a>
-    <a href="#about">ABOUT ME</a>
-    <a href="contacts.html">CONTACTS</a>
+    <nav role="navigation" aria-label="Menu principale">
+        <a href="#home" aria-label="Vai alla sezione Home">HOME</a>
+        <a href="#about" aria-label="Vai alla sezione Chi siamo">ABOUT ME</a>
+        <a href="contacts.html" aria-label="Vai alla pagina Contatti">CONTACTS</a>
+    </nav>
 </div>
 
 <!-- ABOUT ME -->
-        <div id="about" class="w-box aboutExternContent">
+        <div id="about" class="w-box aboutExternContent" role="region" aria-labelledby="aboutTitle">
             <div class="w-box aboutInnerContent">
                 <div class="w-box aboutExternBox">
                     <div class="w-box aboutInnerBoxText">
-                        <h2
-                            class="w-heading aboutInnerBoxTitle">
+                        <h2 id="aboutTitle" class="w-heading aboutInnerBoxTitle">
                             Musica e moda due realtà in un unico sogno
                         </h2>
                         <span class="w-text">L’arte è bellezza, in ogni sua forma, e in quanto tale, va
@@ -71,8 +111,8 @@
                     </div>
                 </div>
                 <div class="w-box aboutDescription">
-                    <div class="w-box storyBox">
-                        <div class="w-box storyBoxImage"><img alt="" width="1440"
+                    <div class="w-box storyBox" role="article">
+                        <div class="w-box storyBoxImage"><img alt="Immagine che rappresenta la storia del brand Eclettica" width="1440"
                                 height="1800"
                                 src="images/about1.jpg"
                                 class="w-image storyImage" sizes="100vw"
@@ -109,7 +149,7 @@
                                 di unire musica e moda in un'unica realtà.</span>
                         </div>
                     </div>
-                    <div class="w-box story2Box">
+                    <div class="w-box story2Box" role="article">
                         <div class="w-box story2BoxText">
                           <h2 class="w-heading story2ExternTitle">
                             <b class="w-bold-text story2InnerTitle">Creazioni uniche</b>
@@ -134,7 +174,7 @@
                             pezzi unici, ma anche a nuove amicizie creative.</span>
                         </div>
                         <div class="w-box story2BoxImage">
-                          <img alt="" width="1440" height="1800"
+                          <img alt="Immagine che mostra alcune delle creazioni uniche di Eclettica" width="1440" height="1800"
                             src="images/about2.jpg"
                             class="w-image story2Image" sizes="100vw" srcset="
                                     images/about2.jpg 16w,
@@ -161,14 +201,14 @@
         </div>
 
 <!-- FOOTER -->
-        <div class="w-box footerExternContent">
+        <footer class="w-box footerExternContent" role="contentinfo">
             <div class="w-box footerInnerContent">
                 <div class="w-box footerExternBox">
-                    <div class="w-box footerInnerBox">
+                    <div class="w-box footerInnerBox" role="navigation" aria-label="Social media">
                         <div style="display: contents">
                             <div style="display: contents">
                                 <a target="_blank" href="https://www.facebook.com/giusy.porru.3/"
-                                    class="w-link iconBox">
+                                    class="w-link iconBox" aria-label="Visita il nostro profilo Facebook">
                                     <div class="w-html-embed">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"
                                             fill="none">
@@ -183,7 +223,7 @@
                         <div style="display: contents">
                             <div style="display: contents">
                                 <a target="_blank" href="https://www.instagram.com/eclettica___/"
-                                    class="w-link iconBox">
+                                    class="w-link iconBox" aria-label="Visita il nostro profilo Instagram">
                                     <div class="w-html-embed">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"
                                             fill="currentColor">
@@ -204,7 +244,7 @@
                         <div style="display: contents">
                             <div style="display: contents">
                                 <a href="mailto:giusy.porru@libero.it?subject=richiesta+di+informazioni+da+eclettica.design"
-                                    class="w-link iconBox">
+                                    class="w-link iconBox" aria-label="Inviaci una email">
                                     <div class="w-html-embed">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -219,11 +259,11 @@
                     <div class="w-text footerInnerBoxText">
                         Powered by
                         <a href="https://www.instagram.com/restuccia.photos/"
-                            class="w-rich-text-link textLink">Michele Restuccia</a>
+                            class="w-rich-text-link textLink" aria-label="Visita il profilo Instagram di Michele Restuccia">Michele Restuccia</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
     </div>
 
 <!-- JS -->
@@ -232,16 +272,17 @@
             const menu = document.getElementById('sideMenu');
             const menuButton = document.querySelector('.navbarMenu');
             const body = document.body;
+            const isOpen = menu.classList.contains('open');
             
             menu.classList.toggle('open');
             menuButton.classList.toggle('hidden');
             
+            // Aggiorna gli attributi ARIA
+            menu.setAttribute('aria-hidden', !isOpen);
+            menuButton.setAttribute('aria-expanded', isOpen);
+            
             // Toggle body scroll
-            if (menu.classList.contains('open')) {
-                body.style.overflow = 'hidden';
-            } else {
-                body.style.overflow = 'auto';
-            }
+            body.style.overflow = isOpen ? 'auto' : 'hidden';
         }
 
         // Aggiungi event listener per tutti i link nel menu
@@ -295,5 +336,4 @@
         });
     </script>
 </body>
-
 </html>
