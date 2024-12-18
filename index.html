@@ -303,59 +303,50 @@
         // Carousel functionality
         function startCarousel(containerId) {
             const carouselContainer = document.getElementById(containerId);
+            const imageCount = 30;  // Aumentato a 30 per supportare più immagini
             let loadedImages = [];
             
+            // Funzione per randomizzare l'array delle immagini
             function shuffleArray(array) {
-                const shuffled = [...array];
-                for (let i = shuffled.length - 1; i > 0; i--) {
+                for (let i = array.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
-                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                    [array[i], array[j]] = [array[j], array[i]];
                 }
-                return shuffled;
+                return array;
             }
 
-            // Carica la lista delle immagini dal JSON
-            async function loadImagesList() {
-                try {
-                    const response = await fetch('images/gallery/images.json');
-                    const data = await response.json();
-                    return data.images;
-                } catch (error) {
-                    console.error('Errore nel caricamento della lista immagini:', error);
-                    return [];
-                }
-            }
+            // Funzione per provare a caricare un'immagine
+            function tryLoadImage(index) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    const paddedIndex = String(index).padStart(2, '0');
+                    img.src = `images/gallery/${paddedIndex}.JPG`;
 
-            // Precarica le immagini
-            async function preloadImages() {
-                const imagesList = await loadImagesList();
-                const shuffledImages = shuffleArray(imagesList);
-                
-                const loadPromises = shuffledImages.map(filename => {
-                    return new Promise((resolve) => {
-                        const img = new Image();
-                        img.src = `images/gallery/${filename}`;
-                        img.onload = () => {
-                            loadedImages.push(img.src);
-                            resolve();
-                        };
-                        img.onerror = () => resolve();
-                    });
+                    img.onload = () => {
+                        loadedImages.push(img.src);
+                        resolve(true);
+                    };
+
+                    img.onerror = () => {
+                        console.log(`Errore caricamento immagine: ${img.src}`); // Aggiungi questa riga
+                        resolve(false);
+                    };
                 });
+            }
+
+            // Carica tutte le immagini disponibili
+            async function loadAllImages() {
+                const loadPromises = [];
+                for (let i = 1; i <= imageCount; i++) {
+                    loadPromises.push(tryLoadImage(i));
+                }
 
                 await Promise.all(loadPromises);
+                
+                // Randomizza l'ordine delle immagini
+                loadedImages = shuffleArray(loadedImages);
 
-                if (loadedImages.length > 0) {
-                    loadedImages = shuffleArray(loadedImages);
-                    createSlides();
-                    const randomDelay = Math.random() * 1500;
-                    setTimeout(() => {
-                        startRotation(carouselContainer);
-                    }, randomDelay);
-                }
-            }
-
-            function createSlides() {
+                // Crea le slides con le immagini trovate
                 loadedImages.forEach((src, index) => {
                     const slide = document.createElement('div');
                     slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
@@ -368,6 +359,14 @@
                     slide.appendChild(img);
                     carouselContainer.appendChild(slide);
                 });
+
+                // Avvia il carousel con un delay casuale
+                if (loadedImages.length > 0) {
+                    const randomDelay = Math.random() * 1500; // Delay casuale tra 0 e 1.5 secondi
+                    setTimeout(() => {
+                        startRotation(carouselContainer);
+                    }, randomDelay);
+                }
             }
 
             function startRotation(container) {
@@ -375,7 +374,7 @@
                 if (slides.length === 0) return;
 
                 let currentSlide = 0;
-                const rotationInterval = 3000 + Math.random() * 2000;
+                const rotationInterval = 3000 + Math.random() * 2000; // Intervallo casuale tra 3 e 5 secondi
 
                 function nextSlide() {
                     slides[currentSlide].classList.remove('active');
@@ -386,8 +385,8 @@
                 setInterval(nextSlide, rotationInterval);
             }
 
-            // Avvia il caricamento
-            preloadImages();
+            // Avvia il caricamento delle immagini
+            loadAllImages();
         }
 
         // Avvia entrambi i carousel quando la pagina è caricata
