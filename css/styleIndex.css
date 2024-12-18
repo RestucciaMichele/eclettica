@@ -368,15 +368,12 @@ body {
 }
 
 .storyBoxImage, .story2BoxImage {
-    width: 100%;
-    border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
-    border-bottom-left-radius: .5rem;
-    border-bottom-right-radius: .5rem;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    aspect-ratio: 1;  /* Mantiene il rapporto quadrato */
-    background-color: #252525;  /* Colore di sfondo durante il caricamento */
+    width: 85%; /* Ridotta la larghezza */
+    margin: 0 auto; /* Centra il contenitore */
+    border-radius: .5rem;
+    overflow: hidden;
+    aspect-ratio: 0.67; /* Rapporto 2:3 per un formato verticale */
+    background-color: #252525;
 }
 
 .storyImage, .story2Image {
@@ -484,7 +481,7 @@ body {
     height: 100%;
     position: relative;
     overflow: hidden;
-    aspect-ratio: 1;  /* Mantiene il rapporto quadrato */
+    aspect-ratio: 0.67; /* Rapporto 2:3, stesso della box image */
 }
 
 .carousel-slide {
@@ -597,12 +594,13 @@ body {
         row-gap: 3em;
     }
     .storyBoxImage, .story2BoxImage {
-        aspect-ratio: 1;
+        width: 100%;
+        aspect-ratio: 0.67;
     }
     .storyImage, .story2Image {
         height: 100%;
         object-fit: cover;
-        aspect-ratio: .6666666666666666;
+        aspect-ratio: 0.67;
     }
     .storyBoxText, .story2BoxText {
         order: 1;
