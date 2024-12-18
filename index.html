@@ -303,20 +303,10 @@
         // Carousel functionality
         function startCarousel(containerId) {
             const carouselContainer = document.getElementById(containerId);
-            // Array con tutte le immagini disponibili
-            const availableImages = [
-                '01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', 
-                '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg',
-                '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg',
-                '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg',
-                '21.jpg', '22.jpg', '23.jpg', '24.jpg', '25.jpg',
-                '26.jpg'
-            ];
-            
             let loadedImages = [];
             
             function shuffleArray(array) {
-                const shuffled = [...array]; // Crea una copia dell'array
+                const shuffled = [...array];
                 for (let i = shuffled.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -324,9 +314,23 @@
                 return shuffled;
             }
 
-            // Precarica tutte le immagini
+            // Carica la lista delle immagini dal JSON
+            async function loadImagesList() {
+                try {
+                    const response = await fetch('images/gallery/images.json');
+                    const data = await response.json();
+                    return data.images;
+                } catch (error) {
+                    console.error('Errore nel caricamento della lista immagini:', error);
+                    return [];
+                }
+            }
+
+            // Precarica le immagini
             async function preloadImages() {
-                const shuffledImages = shuffleArray(availableImages);
+                const imagesList = await loadImagesList();
+                const shuffledImages = shuffleArray(imagesList);
+                
                 const loadPromises = shuffledImages.map(filename => {
                     return new Promise((resolve) => {
                         const img = new Image();
@@ -335,34 +339,35 @@
                             loadedImages.push(img.src);
                             resolve();
                         };
-                        img.onerror = () => resolve(); // Ignora gli errori di caricamento
+                        img.onerror = () => resolve();
                     });
                 });
 
-                // Attendi che tutte le immagini siano caricate o fallite
                 await Promise.all(loadPromises);
 
-                // Crea le slides solo con le immagini caricate correttamente
                 if (loadedImages.length > 0) {
-                    loadedImages.forEach((src, index) => {
-                        const slide = document.createElement('div');
-                        slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
-                        
-                        const img = document.createElement('img');
-                        img.src = src;
-                        img.alt = `Collezione Eclettica ${index + 1}`;
-                        img.loading = 'eager';
-                        
-                        slide.appendChild(img);
-                        carouselContainer.appendChild(slide);
-                    });
-
-                    // Avvia il carousel con delay casuale
+                    loadedImages = shuffleArray(loadedImages);
+                    createSlides();
                     const randomDelay = Math.random() * 1500;
                     setTimeout(() => {
                         startRotation(carouselContainer);
                     }, randomDelay);
                 }
+            }
+
+            function createSlides() {
+                loadedImages.forEach((src, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
+                    
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = `Collezione Eclettica ${index + 1}`;
+                    img.loading = 'eager';
+                    
+                    slide.appendChild(img);
+                    carouselContainer.appendChild(slide);
+                });
             }
 
             function startRotation(container) {
@@ -381,7 +386,7 @@
                 setInterval(nextSlide, rotationInterval);
             }
 
-            // Avvia il caricamento delle immagini
+            // Avvia il caricamento
             preloadImages();
         }
 
