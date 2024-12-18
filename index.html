@@ -303,33 +303,32 @@
         // Carousel functionality
         function startCarousel(containerId) {
             const carouselContainer = document.getElementById(containerId);
-            const imageCount = 30;  // Aumentato a 30 per supportare più immagini
+            const imageCount = 30;
             let loadedImages = [];
             
-            // Funzione per randomizzare l'array delle immagini
-            function shuffleArray(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]];
-                }
-                return array;
-            }
-
-            // Funzione per provare a caricare un'immagine
-            function tryLoadImage(index) {
+            // Funzione per caricare in modo affidabile le immagini
+            function preloadImage(index) {
                 return new Promise((resolve) => {
-                    const img = new Image();
                     const paddedIndex = String(index).padStart(2, '0');
-                    img.src = `images/gallery/${paddedIndex}.jpg`;
-
-                    img.onload = () => {
-                        loadedImages.push(img.src);
-                        resolve(true);
-                    };
-
+                    const img = new Image();
+                    
+                    // Aggiungi un listener per gestire gli errori di caricamento
                     img.onerror = () => {
-                        resolve(false);
+                        console.log(`Image ${paddedIndex}.jpg not found`);
+                        resolve(null);
                     };
+                    
+                    img.onload = () => {
+                        resolve({
+                            src: img.src,
+                            width: img.naturalWidth,
+                            height: img.naturalHeight,
+                            index: paddedIndex
+                        });
+                    };
+                    
+                    // Imposta il percorso dell'immagine
+                    img.src = `images/gallery/${paddedIndex}.jpg`;
                 });
             }
 
@@ -337,35 +336,56 @@
             async function loadAllImages() {
                 const loadPromises = [];
                 for (let i = 1; i <= imageCount; i++) {
-                    loadPromises.push(tryLoadImage(i));
+                    loadPromises.push(preloadImage(i));
                 }
 
-                await Promise.all(loadPromises);
+                // Attendi che tutte le immagini siano caricate o fallite
+                const results = await Promise.all(loadPromises);
                 
+                // Filtra le immagini caricate con successo
+                loadedImages = results.filter(img => img !== null);
+                
+                console.log(`Successfully loaded ${loadedImages.length} images`);
+                
+                if (loadedImages.length === 0) {
+                    console.error('No images were loaded successfully');
+                    return;
+                }
+
                 // Randomizza l'ordine delle immagini
                 loadedImages = shuffleArray(loadedImages);
 
-                // Crea le slides con le immagini trovate
-                loadedImages.forEach((src, index) => {
+                // Crea le slides
+                loadedImages.forEach((imgData, index) => {
                     const slide = document.createElement('div');
                     slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
                     
                     const img = document.createElement('img');
-                    img.src = src;
-                    img.alt = `Collezione Eclettica ${index + 1}`;
-                    img.loading = 'eager';
+                    img.src = imgData.src;
+                    img.alt = `Collezione Eclettica ${imgData.index}`;
+                    img.loading = index === 0 ? 'eager' : 'lazy';
+                    img.decoding = 'async';
                     
                     slide.appendChild(img);
                     carouselContainer.appendChild(slide);
                 });
 
-                // Avvia il carousel con un delay casuale
+                // Avvia il carousel con timing indipendente
                 if (loadedImages.length > 0) {
-                    const randomDelay = Math.random() * 1500; // Delay casuale tra 0 e 1.5 secondi
+                    const randomDelay = Math.random() * 1500;
                     setTimeout(() => {
                         startRotation(carouselContainer);
                     }, randomDelay);
                 }
+            }
+
+            // Funzione per randomizzare l'array delle immagini
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
             }
 
             function startRotation(container) {
