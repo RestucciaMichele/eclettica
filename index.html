@@ -303,8 +303,17 @@
         // Carousel functionality
         function startCarousel(containerId) {
             const carouselContainer = document.getElementById(containerId);
-            const imageCount = 10; // Numero massimo di immagini da cercare
+            const imageCount = 30;  // Aumentato a 30 per supportare più immagini
             let loadedImages = [];
+            
+            // Funzione per randomizzare l'array delle immagini
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
 
             // Funzione per provare a caricare un'immagine
             function tryLoadImage(index) {
@@ -332,6 +341,9 @@
                 }
 
                 await Promise.all(loadPromises);
+                
+                // Randomizza l'ordine delle immagini
+                loadedImages = shuffleArray(loadedImages);
 
                 // Crea le slides con le immagini trovate
                 loadedImages.forEach((src, index) => {
@@ -347,16 +359,21 @@
                     carouselContainer.appendChild(slide);
                 });
 
-                // Avvia il carousel
-                startRotation(carouselContainer);  // Passa il container come parametro
+                // Avvia il carousel con un delay casuale
+                if (loadedImages.length > 0) {
+                    const randomDelay = Math.random() * 1500; // Delay casuale tra 0 e 1.5 secondi
+                    setTimeout(() => {
+                        startRotation(carouselContainer);
+                    }, randomDelay);
+                }
             }
 
-            // Modifica la funzione startRotation per accettare il container
             function startRotation(container) {
-                const slides = container.querySelectorAll('.carousel-slide');  // Cerca solo nel container specifico
+                const slides = container.querySelectorAll('.carousel-slide');
                 if (slides.length === 0) return;
 
                 let currentSlide = 0;
+                const rotationInterval = 3000 + Math.random() * 2000; // Intervallo casuale tra 3 e 5 secondi
 
                 function nextSlide() {
                     slides[currentSlide].classList.remove('active');
@@ -364,7 +381,7 @@
                     slides[currentSlide].classList.add('active');
                 }
 
-                setInterval(nextSlide, 3000);
+                setInterval(nextSlide, rotationInterval);
             }
 
             // Avvia il caricamento delle immagini
