@@ -34,7 +34,7 @@
     <meta name="theme-color" content="#101010">
     
     <!-- Preload -->
-    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="css/styleIndex.css" as="style">
     <link rel="preload" href="images/hero_image.jpg" as="image">
     <link rel="preload" href="images/eclettica_oro.svg" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleIndex.css">
 </head>
 <body class="w-body bodyContent">
     <div class="w-box bodyInnerContent" role="main">
@@ -112,28 +112,11 @@
                 </div>
                 <div class="w-box aboutDescription">
                     <div class="w-box storyBox" role="article">
-                        <div class="w-box storyBoxImage"><img alt="Immagine che rappresenta la storia del brand Eclettica" width="1440"
-                                height="1800"
-                                src="images/about1.jpg"
-                                class="w-image storyImage" sizes="100vw"
-                                srcset="
-                                    images/about1.jpg 16w,
-                                    images/about1.jpg 32w,
-                                    images/about1.jpg 48w,
-                                    images/about1.jpg 64w,
-                                    images/about1.jpg 96w,
-                                    images/about1.jpg 128w,
-                                    images/about1.jpg 256w,
-                                    images/about1.jpg 384w,
-                                    images/about1.jpg 640w,
-                                    images/about1.jpg 750w,
-                                    images/about1.jpg 828w,
-                                    images/about1.jpg 1080w,
-                                    images/about1.jpg 1200w,
-                                    images/about1.jpg 1920w,
-                                    images/about1.jpg 2048w,
-                                    images/about1.jpg 3840w
-                                " decoding="async" loading="lazy"></div>
+                        <div class="w-box storyBoxImage">
+                            <div class="carousel-container" id="gallery-carousel-1">
+                                <!-- Le slides verranno inserite dinamicamente -->
+                            </div>
+                        </div>
                         <div class="w-box storyBoxText">
                             <h2 class="w-heading storyExternTitle"><b
                                     class="w-bold-text storyInnerTitle">Storia del brand</b>
@@ -174,26 +157,9 @@
                             pezzi unici, ma anche a nuove amicizie creative.</span>
                         </div>
                         <div class="w-box story2BoxImage">
-                          <img alt="Immagine che mostra alcune delle creazioni uniche di Eclettica" width="1440" height="1800"
-                            src="images/about2.jpg"
-                            class="w-image story2Image" sizes="100vw" srcset="
-                                    images/about2.jpg 16w,
-                                    images/about2.jpg 32w,
-                                    images/about2.jpg 48w,
-                                    images/about2.jpg 64w,
-                                    images/about2.jpg 96w,
-                                    images/about2.jpg 128w,
-                                    images/about2.jpg 256w,
-                                    images/about2.jpg 384w,
-                                    images/about2.jpg 640w,
-                                    images/about2.jpg 750w,
-                                    images/about2.jpg 828w,
-                                    images/about2.jpg 1080w,
-                                    images/about2.jpg 1200w,
-                                    images/about2.jpg 1920w,
-                                    images/about2.jpg 2048w,
-                                    images/about2.jpg 3840w
-                              " decoding="async" loading="lazy" />
+                          <div class="carousel-container" id="gallery-carousel-2">
+                                <!-- Le slides verranno inserite dinamicamente -->
+                            </div>
                         </div>
                       </div>
                 </div>
@@ -332,6 +298,83 @@
                 });
                 ticking = true;
             }
+        });
+
+        // Carousel functionality
+        function startCarousel(containerId) {
+            const carouselContainer = document.getElementById(containerId);
+            const imageCount = 10; // Numero massimo di immagini da cercare
+            let loadedImages = [];
+
+            // Funzione per provare a caricare un'immagine
+            function tryLoadImage(index) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    const paddedIndex = String(index).padStart(2, '0');
+                    img.src = `images/gallery/${paddedIndex}.jpg`;
+
+                    img.onload = () => {
+                        loadedImages.push(img.src);
+                        resolve(true);
+                    };
+
+                    img.onerror = () => {
+                        resolve(false);
+                    };
+                });
+            }
+
+            // Carica tutte le immagini disponibili
+            async function loadAllImages() {
+                const loadPromises = [];
+                for (let i = 1; i <= imageCount; i++) {
+                    loadPromises.push(tryLoadImage(i));
+                }
+
+                await Promise.all(loadPromises);
+
+                // Crea le slides con le immagini trovate
+                loadedImages.forEach((src, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
+                    
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = `Collezione Eclettica ${index + 1}`;
+                    img.loading = 'eager';
+                    
+                    slide.appendChild(img);
+                    carouselContainer.appendChild(slide);
+                });
+
+                // Avvia il carousel
+                startRotation(carouselContainer);  // Passa il container come parametro
+            }
+
+            // Modifica la funzione startRotation per accettare il container
+            function startRotation(container) {
+                const slides = container.querySelectorAll('.carousel-slide');  // Cerca solo nel container specifico
+                if (slides.length === 0) return;
+
+                let currentSlide = 0;
+
+                function nextSlide() {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }
+
+                setInterval(nextSlide, 3000);
+            }
+
+            // Avvia il caricamento delle immagini
+            loadAllImages();
+        }
+
+        // Avvia entrambi i carousel quando la pagina è caricata
+        document.addEventListener('DOMContentLoaded', () => {
+            startCarousel('gallery-carousel-1');
+            startCarousel('gallery-carousel-2');
         });
     </script>
 </body>
