@@ -222,7 +222,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-text footerInnerBoxText">
+                    <div class="w-text footerInnerBoxText" style="font-size: small;">
                         Powered by
                         <a href="https://www.instagram.com/restuccia.photos/"
                             class="w-rich-text-link textLink" aria-label="Visita il profilo Instagram di Michele Restuccia">Michele Restuccia</a>
@@ -327,8 +327,7 @@
                         resolve(true);
                     };
 
-                    img.onerror = () => {
-                        console.log(`Errore caricamento immagine: ${img.src}`); // Aggiungi questa riga
+                    img.onerror = () => {                        
                         resolve(false);
                     };
                 });
