@@ -303,82 +303,9 @@
         // Carousel functionality
         function startCarousel(containerId) {
             const carouselContainer = document.getElementById(containerId);
-            const imageCount = 30;
+            const imageCount = 30;  // Aumentato a 30 per supportare più immagini
             let loadedImages = [];
             
-            // Funzione per caricare in modo affidabile le immagini
-            function preloadImage(index) {
-                return new Promise((resolve) => {
-                    const paddedIndex = String(index).padStart(2, '0');
-                    const img = new Image();
-                    
-                    // Aggiungi un listener per gestire gli errori di caricamento
-                    img.onerror = () => {
-                        console.log(`Image ${paddedIndex}.jpg not found`);
-                        resolve(null);
-                    };
-                    
-                    img.onload = () => {
-                        resolve({
-                            src: img.src,
-                            width: img.naturalWidth,
-                            height: img.naturalHeight,
-                            index: paddedIndex
-                        });
-                    };
-                    
-                    // Imposta il percorso dell'immagine
-                    img.src = `images/gallery/${paddedIndex}.jpg`;
-                });
-            }
-
-            // Carica tutte le immagini disponibili
-            async function loadAllImages() {
-                const loadPromises = [];
-                for (let i = 1; i <= imageCount; i++) {
-                    loadPromises.push(preloadImage(i));
-                }
-
-                // Attendi che tutte le immagini siano caricate o fallite
-                const results = await Promise.all(loadPromises);
-                
-                // Filtra le immagini caricate con successo
-                loadedImages = results.filter(img => img !== null);
-                
-                console.log(`Successfully loaded ${loadedImages.length} images`);
-                
-                if (loadedImages.length === 0) {
-                    console.error('No images were loaded successfully');
-                    return;
-                }
-
-                // Randomizza l'ordine delle immagini
-                loadedImages = shuffleArray(loadedImages);
-
-                // Crea le slides
-                loadedImages.forEach((imgData, index) => {
-                    const slide = document.createElement('div');
-                    slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
-                    
-                    const img = document.createElement('img');
-                    img.src = imgData.src;
-                    img.alt = `Collezione Eclettica ${imgData.index}`;
-                    img.loading = index === 0 ? 'eager' : 'lazy';
-                    img.decoding = 'async';
-                    
-                    slide.appendChild(img);
-                    carouselContainer.appendChild(slide);
-                });
-
-                // Avvia il carousel con timing indipendente
-                if (loadedImages.length > 0) {
-                    const randomDelay = Math.random() * 1500;
-                    setTimeout(() => {
-                        startRotation(carouselContainer);
-                    }, randomDelay);
-                }
-            }
-
             // Funzione per randomizzare l'array delle immagini
             function shuffleArray(array) {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -386,6 +313,73 @@
                     [array[i], array[j]] = [array[j], array[i]];
                 }
                 return array;
+            }
+
+            // Funzione per forzare il no-cache sulle immagini
+            function getImageUrl(index) {
+                const paddedIndex = String(index).padStart(2, '0');
+                const timestamp = new Date().getTime(); // Aggiungi timestamp per evitare il cache
+                return `images/gallery/${paddedIndex}.jpg?v=${timestamp}`;
+            }
+
+            // Funzione modificata per il caricamento immagini
+            function tryLoadImage(index) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.src = getImageUrl(index);
+
+                    img.onload = () => {
+                        loadedImages.push({
+                            src: img.src,
+                            naturalWidth: img.naturalWidth,
+                            naturalHeight: img.naturalHeight
+                        });
+                        resolve(true);
+                    };
+
+                    img.onerror = () => {
+                        console.log(`Failed to load image ${index}`); // Debug info
+                        resolve(false);
+                    };
+                });
+            }
+
+            // Carica tutte le immagini disponibili
+            async function loadAllImages() {
+                const loadPromises = [];
+                for (let i = 1; i <= imageCount; i++) {
+                    loadPromises.push(tryLoadImage(i));
+                }
+
+                await Promise.all(loadPromises);
+                
+                // Verifica quante immagini sono state caricate
+                console.log(`Loaded ${loadedImages.length} images`); // Debug info
+                
+                // Randomizza l'ordine delle immagini
+                loadedImages = shuffleArray(loadedImages);
+
+                // Crea le slides con le immagini trovate
+                loadedImages.forEach((imgData, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
+                    
+                    const img = document.createElement('img');
+                    img.src = imgData.src;
+                    img.alt = `Collezione Eclettica ${index + 1}`;
+                    img.loading = 'eager';
+                    
+                    slide.appendChild(img);
+                    carouselContainer.appendChild(slide);
+                });
+
+                // Avvia il carousel con un delay casuale
+                if (loadedImages.length > 0) {
+                    const randomDelay = Math.random() * 1500; // Delay casuale tra 0 e 1.5 secondi
+                    setTimeout(() => {
+                        startRotation(carouselContainer);
+                    }, randomDelay);
+                }
             }
 
             function startRotation(container) {
