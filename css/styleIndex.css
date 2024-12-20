@@ -307,9 +307,11 @@ body {
 
 .aboutInnerContent {
     position: relative;
-    max-width: 1280px;
+    max-width: 1480px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 6rem;
+    padding-right: 6rem;
     z-index: 2;
 }
 
@@ -368,7 +370,7 @@ body {
 }
 
 .storyBoxImage, .story2BoxImage {
-    width: 85%; /* Ridotta la larghezza */
+    width: 55%; /* Ridotta la larghezza */
     margin: 0 auto; /* Centra il contenitore */
     border-radius: .5rem;
     overflow: hidden;
@@ -518,6 +520,19 @@ body {
         font-size: 2.5em;
         color: #d2b758;
     }
+       
+
+    .aboutInnerContent {
+        padding-left: 0rem;
+        padding-right: 0rem;
+        max-width: 1100px;
+    }
+
+    .storyBoxImage, .story2BoxImage {
+        width: 75%;
+    }
+
+
     .storyBoxText, .story2BoxText {
         column-gap: 1rem;
         row-gap: 1rem;
@@ -594,7 +609,7 @@ body {
         row-gap: 3em;
     }
     .storyBoxImage, .story2BoxImage {
-        width: 100%;
+        width: 90%;
         aspect-ratio: 0.67;
     }
     .storyImage, .story2Image {

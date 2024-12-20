@@ -49,93 +49,104 @@
 <body class="w-body bodyContent">
     <div class="w-box bodyInnerContent">
         <!-- NAVBAR -->
-        <nav class="navbar">
-            <a href="index.html" class="navbarLogo" aria-label="Torna alla home">
+        <nav class="navbar" role="navigation" aria-label="Menu principale">
+            <a href="#home" class="navbarLogo" aria-label="Torna alla home">
                 <img alt="Eclettica Logo" src="images/logo_giusy_oro.png" class="navbarLogoImage gold" />
                 <img alt="Eclettica Logo" src="images/logo_giusy_bianco.png" class="navbarLogoImage white" />
             </a>
-            <button type="button" class="navbarMenu" onclick="toggleMenu()">
+            <button type="button" class="navbarMenu" onclick="toggleMenu()" aria-expanded="false"
+                aria-controls="sideMenu" aria-label="Apri menu">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-                    <path fill="currentColor" d="M56 48c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 48 54.798 48 56 48zM56 32c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 32 54.798 32 56 32zM56 16c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 16 54.798 16 56 16z"/>
+                    <path fill="currentColor"
+                        d="M56 48c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 48 54.798 48 56 48zM56 32c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 32 54.798 32 56 32zM56 16c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 16 54.798 16 56 16z" />
                 </svg>
             </button>
         </nav>
 
-        <!-- SIDE MENU -->
-        <div id="sideMenu" class="side-menu">
-            <button class="close-btn" onclick="toggleMenu()">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+        <!-- OPEN MENU -->
+        <div id="sideMenu" class="side-menu" role="dialog" aria-label="Menu di navigazione" aria-hidden="true">
+            <button class="close-btn" onclick="toggleMenu()" aria-label="Chiudi menu">
+                <div class="w-html-embed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </div>
             </button>
-            <a href="index.html#home">HOME</a>
-            <a href="index.html#about">ABOUT ME</a>
-            <a href="contacts.html">CONTACTS</a>
+            <nav role="navigation" aria-label="Menu principale">
+                <a href="index.html" aria-label="Vai alla sezione Home">HOME</a>
+                <a href="index.html#about " aria-label="Vai alla sezione Chi siamo">ABOUT ME</a>
+                <a href="contacts.html" aria-label="Vai alla pagina Contatti">CONTACTS</a>
+            </nav>
         </div>
 
         <!-- CONTACTS CONTENT -->
         <div class="contacts-content">
             <div class="contacts-left">
-                <img src="images/negozio.JPG" alt="Negozio Eclettica" class="contact-image">
+                <div class="contact-image-container">
+                    <img src="images/negozio.JPG" alt="Negozio Eclettica" class="contact-image">
+                </div>
             </div>
             <div class="contacts-right">
-                <!-- Sezione contatti -->
-                <section class="contact-section">
-                    <h2 class="section-title">Contattaci</h2>
-                    <div class="contact-methods">
-                        <a href="https://www.instagram.com/eclettica___/" class="contact-method" target="_blank">
-                            <i class="contact-icon">Instagram</i>
-                            <span class="contact-label">@eclettica___</span>
-                        </a>
-                        <a href="https://www.facebook.com/giusy.porru.3/" class="contact-method" target="_blank">
-                            <i class="contact-icon">Facebook</i>
-                            <span class="contact-label">Giusy Porru</span>
-                        </a>
-                        <a href="mailto:giusy.porru@libero.it" class="contact-method">
-                            <i class="contact-icon">Email</i>
-                            <span class="contact-label">giusy.porru@libero.it</span>
-                        </a>
-                    </div>
-                </section>
+                <div class="contacts-right-scroll">
+                    <!-- Sezione contatti -->
+                    <section class="contact-section">
+                        <h2 class="section-title">Contattaci</h2>
+                        <div class="contact-methods">
+                            <a href="https://www.instagram.com/eclettica___/" class="contact-method" target="_blank">
+                                <i class="contact-icon">Instagram</i>
+                                <span class="contact-label">@eclettica___</span>
+                            </a>
+                            <a href="https://www.facebook.com/giusy.porru.3/" class="contact-method" target="_blank">
+                                <i class="contact-icon">Facebook</i>
+                                <span class="contact-label">Giusy Porru</span>
+                            </a>
+                            <a href="mailto:giusy.porru@libero.it" class="contact-method">
+                                <i class="contact-icon">Email</i>
+                                <span class="contact-label">giusy.porru@libero.it</span>
+                            </a>
+                        </div>
+                    </section>
 
-                <!-- Orari -->
-                <section class="hours-section">
-                    <h2 class="section-title">Orari di apertura</h2>
-                    <div class="store-hours">
-                        <div class="hours-row">
-                            <span class="day">Lunedì - Venerdì</span>
-                            <span class="time">9:30 - 12:30 | 15:30 - 19:00</span>
+                    <!-- Orari -->
+                    <section class="hours-section">
+                        <h2 class="section-title">Orari di apertura</h2>
+                        <div class="store-hours">
+                            <div class="hours-row">
+                                <span class="day">Lunedì - Venerdì</span>
+                                <span class="time">9:30 - 12:30 | 15:30 - 19:00</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="day">Sabato</span>
+                                <span class="time">9:30 - 12:30</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="day">Domenica</span>
+                                <span class="time">Chiuso</span>
+                            </div>
                         </div>
-                        <div class="hours-row">
-                            <span class="day">Sabato</span>
-                            <span class="time">9:30 - 12:30</span>
+                    </section>
+                    
+                    <!-- Mappa -->
+                    <section class="map-section">
+                        <h2 class="section-title">Dove siamo</h2>
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.9303010444736!2d9.319570676891752!3d45.35671177107373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c4e04f0c3ee1%3A0x6a7c47e5c6c42dd1!2sVia%20Conciliazione%2C%2026%2C%2020077%20Melegnano%20MI!5e0!3m2!1sen!2sit!4v1689241427428!5m2!1sen!2sit"
+                                width="100%" 
+                                height="450" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
-                        <div class="hours-row">
-                            <span class="day">Domenica</span>
-                            <span class="time">Chiuso</span>
+                        <div class="address">
+                            <p>Via Conciliazione, 26, 20077 Melegnano (MI)</p>
                         </div>
-                    </div>
-                </section>
-                
-                <!-- Mappa -->
-                <section class="map-section">
-                    <h2 class="section-title">Dove siamo</h2>
-                    <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.9303010444736!2d9.319570676891752!3d45.35671177107373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c4e04f0c3ee1%3A0x6a7c47e5c6c42dd1!2sVia%20Conciliazione%2C%2026%2C%2020077%20Melegnano%20MI!5e0!3m2!1sen!2sit!4v1689241427428!5m2!1sen!2sit"
-                            width="100%" 
-                            height="450" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                    <div class="address">
-                        <p>Via Conciliazione, 26, 20077 Melegnano (MI)</p>
-                    </div>
-                </section>               
+                    </section>               
+                </div>
             </div>
         </div>
     </div>
@@ -147,29 +158,29 @@
             const menuButton = document.querySelector('.navbarMenu');
             const body = document.body;
             const isOpen = menu.classList.contains('open');
-            
+
             menu.classList.toggle('open');
             menuButton.classList.toggle('hidden');
-            
+
             // Aggiorna gli attributi ARIA
             menu.setAttribute('aria-hidden', !isOpen);
             menuButton.setAttribute('aria-expanded', isOpen);
-            
+
             // Toggle body scroll
             body.style.overflow = isOpen ? 'auto' : 'hidden';
         }
 
         // Aggiungi event listener per tutti i link nel menu
         document.querySelectorAll('.side-menu a').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 if (this.getAttribute('href') !== '#') {  // Non eseguire per il bottone close
                     const targetId = this.getAttribute('href').slice(1);
                     const targetElement = document.getElementById(targetId);
-                    
+
                     // Chiudi il menu e riabilita lo scroll
                     toggleMenu();
                     document.body.style.overflow = 'auto';
-                    
+
                     // Scroll alla sezione
                     if (targetElement) {
                         e.preventDefault();
@@ -181,31 +192,41 @@
             });
         });
 
-        let lastScrollY = window.scrollY;
+        let lastScrollY = 0;
         let ticking = false;
 
         function updateNavbar() {
             const navbar = document.querySelector('.navbar');
+            const contactsRight = document.querySelector('.contacts-right');
+            const scrollY = contactsRight.scrollTop;  // Usa lo scroll della colonna destra
 
-            if (window.scrollY === 0) {
+            if (scrollY === 0) {
                 navbar.classList.remove('hidden');
-            } else if (lastScrollY < window.scrollY) {
+            } else if (lastScrollY < scrollY) {
                 navbar.classList.add('hidden');
             } else {
                 navbar.classList.remove('hidden');
             }
 
-            lastScrollY = window.scrollY;
+            lastScrollY = scrollY;
             ticking = false;
         }
 
-        window.addEventListener('scroll', () => {
+        // Aggiungi l'event listener alla colonna destra invece che a window
+        document.querySelector('.contacts-right').addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     updateNavbar();
                 });
                 ticking = true;
             }
+        });
+
+        // Aggiungi questa funzione per gestire lo scroll da ovunque
+        document.querySelector('.contacts-left').addEventListener('wheel', (e) => {
+            const rightSection = document.querySelector('.contacts-right-scroll');
+            rightSection.scrollTop += e.deltaY;
+            e.preventDefault();
         });
     </script>
 </body>
