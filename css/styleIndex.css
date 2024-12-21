@@ -609,7 +609,7 @@ body {
         row-gap: 3em;
     }
     .storyBoxImage, .story2BoxImage {
-        width: 90%;
+        width: 100%;
         aspect-ratio: 0.67;
     }
     .storyImage, .story2Image {
