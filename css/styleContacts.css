@@ -26,6 +26,7 @@
 .contacts-left {
     display: flex; 
     flex-direction: column; 
+    height: 100dvh;
 }
 
 .contact-image-container {
@@ -51,6 +52,7 @@
 /* Colonna destra con contenuti */
 .contacts-right {
     overscroll-behavior: contain;
+    height: 100dvh;
 }
 
 .contacts-right-scroll {
