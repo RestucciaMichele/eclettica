@@ -104,17 +104,16 @@
     }
 
     .contacts-left {
-        height: 40vh; /* Cambiato da 50vh a 40vh */
+        height: 40dvh; /* Cambiato da 50vh a 40vh */
         flex: none;
     }
 
     .contact-image-container {
-        height: 40vh; /* Cambiato da 50vh a 40vh */
         border-radius: 8px;
     }
 
     .contacts-right {
-        height: 60vh; /* Cambiato da 50vh a 60vh per compensare */
+        height: 60dvh; /* Cambiato da 50vh a 60vh per compensare */
         flex: none;
         position: relative; /* Per il posizionamento degli indicatori */
         background-color: #101010; /* Sfondo nero */
