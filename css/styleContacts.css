@@ -7,12 +7,8 @@
 .contacts-content {
     width: 100%;
     height: 100vh;
-    margin: 0;
-    padding: 0;
     display: flex;
     position: fixed;
-    top: 0;
-    left: 0;
 }
 
 /* Layout base a due colonne */
@@ -22,12 +18,12 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+    padding: 1rem;
 }
 
 /* Colonna sinistra con immagine */
 .contacts-left {
-    padding: 1rem;
     display: flex; 
     flex-direction: column; 
 }
@@ -60,7 +56,6 @@
 .contacts-right-scroll {
     height: 100vh;
     overflow-y: auto;
-    padding: 1rem;
     box-sizing: border-box;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch; /* Per iOS */
@@ -81,37 +76,33 @@
 /* Media Queries */
 @media (max-width: 767px) {
     .contacts-content {
-        position: fixed;
         flex-direction: column;
-        height: 100vh;
     }
 
     .contacts-left {
         height: 50vh; /* Metà schermo */
-        padding: 1rem;
         flex: none;
     }
 
     .contact-image-container {
         height: 50vh;
         border-radius: 8px;
-
     }
 
     .contacts-right {
         height: 50vh; /* Metà schermo */
         flex: none;
+        padding: 0 1rem 1rem 1rem; /* Modificato: aggiunto padding bottom */
     }
 
     .contacts-right-scroll {
-        height: 100%;
-        padding: 1rem;
         display: flex;
         flex-direction: row; /* Cambia direzione a orizzontale */
         overflow-x: auto; /* Scroll orizzontale */
-        overflow-y: hidden; /* Disabilita scroll verticale */
+        overflow-y: hidden; /* Disable vertical scroll */
         scroll-snap-type: x mandatory; /* Snap alle sezioni */
-        -webkit-overflow-scrolling: touch;
+        height: 100%; /* Aggiunto per assicurare l'altezza piena */
+        border-radius: 8px;
     }
 
     /* Stile per le sezioni nel layout mobile */
@@ -120,8 +111,8 @@
     .map-section {
         min-width: 85vw; /* Larghezza minima per ogni sezione */
         margin-right: 1rem; /* Spazio tra le sezioni */
-        margin-bottom: 0;
-        height: calc(50vh - 2rem); /* Altezza fissa considerando il padding */
+        margin-bottom: 1rem; /* Aggiunto margin bottom */
+        height: calc(50vh - 3rem); /* Modificato per considerare i padding */
         scroll-snap-align: start; /* Snap point */
         flex-shrink: 0; /* Impedisce il restringimento */
     }
