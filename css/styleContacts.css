@@ -73,6 +73,30 @@
 
 /* ...existing code for other styles... */
 
+/* Indicatori di navigazione */
+.section-indicators {
+    display: none; /* Nascosto di default */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    gap: 12px;
+    padding: 10px;
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.indicator-dot.active {
+    background-color: #fff;
+}
+
 /* Media Queries */
 @media (max-width: 767px) {
     .contacts-content {
@@ -90,38 +114,30 @@
     }
 
     .contacts-right {
-        height: 50vh; /* Metà schermo */
+        height: calc(50vh - 50px); /* Ridotta l'altezza per fare spazio agli indicatori */
         flex: none;
-        padding: 0 1rem 1rem 1rem; /* Modificato: aggiunto padding bottom */
+        position: relative; /* Per il posizionamento degli indicatori */
+        background-color: #101010; /* Sfondo nero */
     }
 
     .contacts-right-scroll {
+        height: 100%;
         display: flex;
         flex-direction: row; /* Cambia direzione a orizzontale */
         overflow-x: auto; /* Scroll orizzontale */
         overflow-y: hidden; /* Disable vertical scroll */
         scroll-snap-type: x mandatory; /* Snap alle sezioni */
-        height: 100%; /* Aggiunto per assicurare l'altezza piena */
-        border-radius: 8px;
     }
 
     /* Stile per le sezioni nel layout mobile */
     .contact-section,
     .hours-section,
     .map-section {
-        min-width: 85vw; /* Larghezza minima per ogni sezione */
         margin-right: 1rem; /* Spazio tra le sezioni */
-        margin-bottom: 1rem; /* Aggiunto margin bottom */
-        height: calc(50vh - 3rem); /* Modificato per considerare i padding */
-        scroll-snap-align: start; /* Snap point */
+        margin-bottom: 0; /* Rimuove il margine inferiore */
+        scroll-snap-align: center; /* Snap point */
         flex-shrink: 0; /* Impedisce il restringimento */
-    }
-
-    /* Rimuovi la barra di scrolling ma mantieni la funzionalità */
-    .contacts-right-scroll {
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
+    }    
     
     .contacts-right-scroll::-webkit-scrollbar {
         display: none;
@@ -134,5 +150,10 @@
 
     .map-container iframe {
         height: 100%;
+    }
+
+    .section-indicators {
+        display: flex;
+        position: absolute; /* Cambiato da fixed a absolute */
     }
 }

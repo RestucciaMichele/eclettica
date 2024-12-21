@@ -148,6 +148,11 @@
                     </section>               
                 </div>
             </div>
+            <div class="section-indicators">
+                <div class="indicator-dot active"></div>
+                <div class="indicator-dot"></div>
+                <div class="indicator-dot"></div>
+            </div>
         </div>
     </div>
 
@@ -228,6 +233,26 @@
             rightSection.scrollTop += e.deltaY;
             e.preventDefault();
         });
+
+        // Gestione indicatori per mobile
+        if (window.matchMedia("(max-width: 767px)").matches) {
+            const scrollContainer = document.querySelector('.contacts-right-scroll');
+            const dots = document.querySelectorAll('.indicator-dot');
+            
+            const updateDots = () => {
+                const scrollLeft = scrollContainer.scrollLeft;
+                const width = scrollContainer.offsetWidth;
+                const section = Math.round(scrollLeft / width);
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === section);
+                });
+            };
+
+            scrollContainer.addEventListener('scroll', () => {
+                updateDots();
+            });
+        }
     </script>
 </body>
 </html>
