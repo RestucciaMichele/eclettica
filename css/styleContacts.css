@@ -53,13 +53,8 @@
 .contacts-right {
     overscroll-behavior: contain;
     height: 100dvh;
-}
-
-.contacts-right-scroll {
-    height: 100dvh;
     overflow-y: auto;
     box-sizing: border-box;
-    overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch; /* Per iOS */
 }
 
@@ -73,30 +68,34 @@
     margin-bottom: 2rem;
 }
 
-/* ...existing code for other styles... */
-
-/* Indicatori di navigazione */
-.section-indicators {
-    display: none; /* Nascosto di default */
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-    gap: 12px;
-    padding: 10px;
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.indicator-dot {
-    width: 8px;
-    height: 8px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #e7e5e4;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
-.indicator-dot.active {
-    background-color: #fff;
+.contact-method:hover {
+    color: #d2b758;
+}
+
+.contact-icon {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+}
+
+.contact-label {
+    font-size: 1.2rem;
 }
 
 /* Media Queries */
@@ -134,8 +133,8 @@
     .contact-section,
     .hours-section,
     .map-section {
-        margin-right: 1rem; /* Spazio tra le sezioni */
-        margin-bottom: 0; /* Rimuove il margine inferiore */
+        
+        margin-bottom: 1rem; /* Rimuove il margine inferiore */
         scroll-snap-align: center; /* Snap point */
         flex-shrink: 0; /* Impedisce il restringimento */
     }    
@@ -151,10 +150,5 @@
 
     .map-container iframe {
         height: 100%;
-    }
-
-    .section-indicators {
-        display: flex;
-        position: absolute; /* Cambiato da fixed a absolute */
     }
 }
