@@ -63,9 +63,12 @@
 .hours-section,
 .map-section {
     background-color: #252525;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 0.5rem;
     margin-bottom: 2rem;
+    color: #e7e5e4;
+    font-family: DM Sans, sans-serif;
+    line-height: 1.375;
 }
 
 .contact-methods {
@@ -82,6 +85,7 @@
     text-decoration: none;
     font-size: 1.2rem;
     transition: color 0.3s ease;
+    font-weight: 400;
 }
 
 .contact-method:hover {
@@ -98,7 +102,48 @@
     font-size: 1.2rem;
 }
 
+/* Stili sezioni e titoli */
+.section-title {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    line-height: 1.25;
+    font-weight: 600;
+    font-size: 2.8em;
+    font-family: Great Vibes, sans-serif;
+    color: #d2b758;
+    text-align: center;
+}
+
+.store-hours {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.address {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+}
+
 /* Media Queries */
+@media (max-width: 1440px) {
+    .section-title {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 991px) {
+    .section-title {
+        font-size: 2.2em;
+    }
+    .contact-method,
+    .store-hours,
+    .address {
+        font-size: 1.1rem;
+    }
+}
+
 @media (max-width: 767px) {
     .contacts-content {
         flex-direction: column;
@@ -145,7 +190,7 @@
 
     /* Aggiusta la mappa per il nuovo layout */
     .map-container {
-        height: calc(100% - 100px); /* Lascia spazio per il titolo e l'indirizzo */
+        height: 50dvh; /* Lascia spazio per il titolo e l'indirizzo */
     }
 
     .map-container iframe {

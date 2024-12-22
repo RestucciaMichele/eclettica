@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
 <head>
@@ -199,62 +201,7 @@
             });
         });
 
-        let lastScrollY = 0;
-        let ticking = false;
-
-        function updateNavbar() {
-            const navbar = document.querySelector('.navbar');
-            const contactsRight = document.querySelector('.contacts-right');
-            const scrollY = contactsRight.scrollTop;  // Usa lo scroll della colonna destra
-
-            if (scrollY === 0) {
-                navbar.classList.remove('hidden');
-            } else if (lastScrollY < scrollY) {
-                navbar.classList.add('hidden');
-            } else {
-                navbar.classList.remove('hidden');
-            }
-
-            lastScrollY = scrollY;
-            ticking = false;
-        }
-
-        // Aggiungi l'event listener alla colonna destra invece che a window
-        document.querySelector('.contacts-right').addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    updateNavbar();
-                });
-                ticking = true;
-            }
-        });
-
-        // Aggiungi questa funzione per gestire lo scroll da ovunque
-        document.querySelector('.contacts-left').addEventListener('wheel', (e) => {
-            const rightSection = document.querySelector('.contacts-right');
-            rightSection.scrollTop += e.deltaY;
-            e.preventDefault();
-        });
-
-        // Gestione indicatori per mobile
-        if (window.matchMedia("(max-width: 767px)").matches) {
-            const scrollContainer = document.querySelector('.contacts-right');
-            const dots = document.querySelectorAll('.indicator-dot');
-            
-            const updateDots = () => {
-                const scrollLeft = scrollContainer.scrollLeft;
-                const width = scrollContainer.offsetWidth;
-                const section = Math.round(scrollLeft / width);
-                
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === section);
-                });
-            };
-
-            scrollContainer.addEventListener('scroll', () => {
-                updateDots();
-            });
-        }
+        
     </script>
 </body>
 </html>
