@@ -229,18 +229,6 @@
     top: 0;
 }
 
-/* Outline visibile per la navigazione da tastiera */
-a:focus,
-button:focus {
-    outline: 3px solid #d2b758;
-    outline-offset: 2px;
-}
-
-/* Dimensione minima per elementi interattivi */
-button {
-    min-height: 44px; /* Per una migliore accessibilità touch */
-}
-
 /* Media query per preferenze di movimento ridotto */
 @media (prefers-reduced-motion: reduce) {
     * {
@@ -261,3 +249,4 @@ button {
 .phone-link:hover {
     color: #d2b758;
 }
+
