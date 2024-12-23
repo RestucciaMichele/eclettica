@@ -23,13 +23,13 @@
     overflow: hidden;
     box-sizing: border-box;
     padding: 1rem;
+    padding-top: 2rem;
 }
 
 /* Colonna sinistra con immagine */
 .contacts-left {
     display: flex; 
     flex-direction: column; 
-    height: 100dvh;
 }
 
 .contact-image-container {
@@ -116,7 +116,7 @@
     line-height: 1.25;
     font-weight: 600;
     font-size: 2.8em;
-    font-family: Great Vibes, sans-serif;
+    font-family: "Satisfy", serif;
     color: #d2b758;
     text-align: center;
 }
@@ -165,6 +165,7 @@
     .contacts-left {
         height: 40dvh; /* Cambiato da 50vh a 40vh */
         flex: none;
+        padding-top: 1rem;
     }
 
     .contact-image-container {
@@ -176,6 +177,7 @@
         flex: none;
         position: relative; /* Per il posizionamento degli indicatori */
         background-color: #101010; /* Sfondo nero */
+        padding-top: 0rem;
     }
 
     .contacts-right-scroll {
