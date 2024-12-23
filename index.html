@@ -6,7 +6,7 @@
     <title>Eclettica</title>
     
     <!-- SEO -->
-    <meta name="description" content="Eclettica: atelier di moda e musica a Melegnano dal 1965. Creazioni uniche che fondono arte, musica e moda. Ogni pezzo è fatto a mano con passione e creatività.">
+    <meta name="description" content="Eclettica: atelier di moda a Melegnano dal 1965. Creazioni uniche che fondono arte, musica e moda. Ogni pezzo è fatto a mano con passione e creatività.">
     <meta name="keywords" content="eclettica, atelier, moda, musica, Melegnano, made in Italy, fashion, handmade, sartoria">
     <meta name="author" content="Giusy Porru">
     <meta name="robots" content="index, follow">
@@ -14,14 +14,14 @@
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Eclettica">
-    <meta property="og:description" content="Atelier di moda e musica a Melegnano. Creazioni uniche fatte a mano">
+    <meta property="og:description" content="Atelier di moda a Melegnano. Creazioni uniche fatte a mano">
     <meta property="og:image" content="https://eclettica.design/images/og-image.jpg">
     <meta property="og:url" content="https://eclettica.design">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Eclettica">
-    <meta name="twitter:description" content="Atelier di moda e musica a Melegnano. Creazioni uniche fatte a mano">
+    <meta name="twitter:description" content="Atelier di moda a Melegnano. Creazioni uniche fatte a mano">
     <meta name="twitter:image" content="https://eclettica.design/images/twitter-image.jpg">
     
     <!-- Favicon -->
@@ -35,7 +35,7 @@
     
     <!-- Preload -->
     <link rel="preload" href="css/styleIndex.css" as="style">
-    <link rel="preload" href="images/hero_image.jpg" as="image">
+    <link rel="preload" href="images/hero_image.webp" as="image">
     <link rel="preload" href="images/eclettica_oro.svg" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,6 +45,71 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/styleIndex.css">
+
+    <!-- Schema.org markup per Google -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://eclettica.design/",
+            "name": "Eclettica",
+            "description": "atelier di moda a Melegnano dal 1965. Creazioni uniche che fondono arte, musica e moda. Ogni pezzo è fatto a mano con passione e creatività.",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://eclettica.design/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            },
+            "sameAs": [
+                "https://www.facebook.com/giusy.porru.3/",
+                "https://www.instagram.com/eclettica___/"
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://eclettica.design",
+            "logo": "https://eclettica.design/images/logo_giusy_oro.png",
+            "name": "Eclettica",
+            "siteNavigationElement": [
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "Home",
+                    "url": "https://eclettica.design/"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "About Me",
+                    "url": "https://eclettica.design/#about"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "Contacts",
+                    "url": "https://eclettica.design/contacts.html"
+                }
+            ]
+        }
+    </script>
+    <!-- Breadcrumbs strutturati -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://eclettica.design/"
+            }]
+        }
+    </script>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://eclettica.design/" />
+    
+    <!-- Meta tags aggiuntivi -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 </head>
 <body class="w-body bodyContent">
     <div class="w-box bodyInnerContent" role="main">
@@ -52,7 +117,7 @@
 <!-- HOME -->
         <div id="home" class="w-box homeContent" role="region" aria-label="Home">
             <div class="w-box heroSection" role="img" aria-label="Immagine principale dell'atelier">
-                <img alt="Interno dell'atelier Eclettica con creazioni esclusive in mostra" src="images/hero_image.jpg" class="w-image heroImage" decoding="async" loading="eager" />
+                <img alt="Interno dell'atelier Eclettica con creazioni esclusive in mostra" src="images/hero_image.webp" class="w-image heroImage" decoding="async" loading="eager" />
             </div>
             <div class="w-box heroOverlay" aria-hidden="true">
                 <div class="w-box heroTitle">
@@ -62,7 +127,7 @@
             </div>
 
             <!-- NAVBAR -->
-            <nav class="navbar" role="navigation" aria-label="Menu principale">
+            <nav class="navbar" role="navigation" aria-label="Menu principale" itemscope itemtype="https://schema.org/SiteNavigationElement">
                 <a href="#home" class="navbarLogo" aria-label="Torna alla home">
                     <img alt="Eclettica Logo" src="images/logo_giusy_oro.png" class="navbarLogoImage gold" />
                     <img alt="Eclettica Logo" src="images/logo_giusy_bianco.png" class="navbarLogoImage white" />
@@ -320,7 +385,7 @@
                 return new Promise((resolve) => {
                     const img = new Image();
                     const paddedIndex = String(index).padStart(2, '0');
-                    img.src = `images/gallery/${paddedIndex}.JPG`;
+                    img.src = `images/gallery/${paddedIndex}.webp`;
 
                     img.onload = () => {
                         loadedImages.push(img.src);

@@ -8,7 +8,10 @@
     width: 100%;
     height: 100dvh;
     display: flex;
-    position: fixed;
+    position: relative;
+    max-width: 80dvw;
+    margin: 0 auto;
+    
 }
 
 /* Layout base a due colonne */
@@ -66,7 +69,7 @@
     padding: 1.5rem;
     border-radius: 0.5rem;
     margin-bottom: 2rem;
-    color: #e7e5e4;
+    color: #ffffff; /* Aumentiamo il contrasto */
     font-family: DM Sans, sans-serif;
     line-height: 1.375;
 }
@@ -82,14 +85,18 @@
     align-items: center;
     gap: 1rem;
     color: #e7e5e4;
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 2px;
     font-size: 1.2rem;
     transition: color 0.3s ease;
     font-weight: 400;
+    min-height: 44px; /* Per una migliore accessibilità touch */
 }
 
+.contact-method:focus,
 .contact-method:hover {
-    color: #d2b758;
+    background-color: rgba(210, 183, 88, 0.1);
+    color: #ffffff;
 }
 
 .contact-icon {
@@ -131,6 +138,10 @@
     .section-title {
         font-size: 2.5em;
     }
+
+    .contacts-content {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 991px) {
@@ -142,6 +153,8 @@
     .address {
         font-size: 1.1rem;
     }
+
+    
 }
 
 @media (max-width: 767px) {
@@ -196,4 +209,53 @@
     .map-container iframe {
         height: 100%;
     }
+}
+
+/* Stili per skip link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #d2b758;
+    color: black;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Outline visibile per la navigazione da tastiera */
+a:focus,
+button:focus {
+    outline: 3px solid #d2b758;
+    outline-offset: 2px;
+}
+
+/* Dimensione minima per elementi interattivi */
+button {
+    min-height: 44px; /* Per una migliore accessibilità touch */
+}
+
+/* Media query per preferenze di movimento ridotto */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Stile per il link del telefono */
+.phone-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.phone-link:hover {
+    color: #d2b758;
 }

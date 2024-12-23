@@ -9,7 +9,7 @@
     <meta name="description" content="Contatta Eclettica, l'atelier di moda e musica a Melegnano. Vieni a trovarci in Via Conciliazione 26 o contattaci per informazioni sulle nostre creazioni uniche.">
     <meta name="keywords" content="eclettica contatti, atelier Melegnano, moda, musica, orari negozio, indirizzo">
     <meta name="author" content="Giusy Porru">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
@@ -45,11 +45,82 @@
     <link rel="stylesheet" href="css/styleIndex.css">
     <link rel="stylesheet" href="css/styleContacts.css">
 
+    <!-- Schema.org markup per Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://eclettica.design/",
+        "name": "Eclettica",
+        "description": "atelier di moda a Melegnano dal 1965. Creazioni uniche che fondono arte, musica e moda. Ogni pezzo è fatto a mano con passione e creatività.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://eclettica.design/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        "sameAs": [
+            "https://www.facebook.com/giusy.porru.3/",
+            "https://www.instagram.com/eclettica___/"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "url": "https://eclettica.design",
+        "logo": "https://eclettica.design/images/logo_giusy_oro.png",
+        "name": "Eclettica",
+        "siteNavigationElement": [
+            {
+                "@type": "SiteNavigationElement",
+                "name": "Home",
+                "url": "https://eclettica.design/"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "name": "About Me",
+                "url": "https://eclettica.design/#about"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "name": "Contacts",
+                "url": "https://eclettica.design/contacts.html"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://eclettica.design/contacts.html" />
+    
+    <!-- Breadcrumbs strutturati -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://eclettica.design/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contatti",
+            "item": "https://eclettica.design/contacts.html"
+        }]
+    }
+    </script>
+
+    <!-- Collegamenti tra le pagine -->
+    <link rel="prev" href="https://eclettica.design/" />
+
 </head>
 <body class="w-body bodyContent">
-    <div class="w-box bodyInnerContent">
+    <div class="w-box bodyInnerContent" role="main">
         <!-- NAVBAR -->
-        <nav class="navbar" role="navigation" aria-label="Menu principale">
+        <nav class="navbar" role="navigation" aria-label="Menu principale" itemscope itemtype="https://schema.org/SiteNavigationElement">
             <a href="index.html#home" class="navbarLogo" aria-label="Torna alla home">
                 <img alt="Eclettica Logo" src="images/logo_giusy_oro.png" class="navbarLogoImage gold" />
                 <img alt="Eclettica Logo" src="images/logo_giusy_bianco.png" class="navbarLogoImage white" />
@@ -82,18 +153,23 @@
         </div>
 
         <!-- CONTACTS CONTENT -->
-        <div class="contacts-content">
-            <div class="contacts-left">
+        <main class="contacts-content" role="main" aria-label="Contenuto principale">
+            <div class="contacts-left" role="img" aria-label="Foto del negozio Eclettica">
                 <div class="contact-image-container">
-                    <img src="images/negozio.JPG" alt="Negozio Eclettica" class="contact-image">
+                    <img src="images/negozio.webp" alt="Vetrina e ingresso del negozio Eclettica" class="contact-image">
                 </div>
             </div>
-            <div class="contacts-right">
+            <div class="contacts-right" role="complementary" aria-label="Informazioni di contatto">
                 <!-- Sezione contatti -->
-                <section class="contact-section">
-                    <h2 class="section-title">Contattami</h2>
-                    <div class="contact-methods">
-                        <a href="https://www.facebook.com/giusy.porru.3/" class="contact-method" target="_blank">
+                <section class="contact-section" aria-labelledby="contact-title">
+                    <h2 id="contact-title" class="section-title">Contattami</h2>
+                    <div class="contact-methods" role="list">
+                        <a href="https://www.facebook.com/giusy.porru.3/" 
+                           class="contact-method" 
+                           target="_blank"
+                           rel="noopener"
+                           role="listitem"
+                           aria-label="Profilo Facebook di Giusy Porru, si apre in una nuova finestra">
                             <div class="contact-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
                                     <path d="M13.0755 28H17.8395V15.9551H21.1654L21.5249 11.9101H17.8395C17.8395 11.9101 17.8395 10.382 17.8395 9.57303C17.8395 8.58427 18.0193 8.22472 18.9182 8.22472C19.6373 8.22472 21.5249 8.22472 21.5249 8.22472V4C21.5249 4 18.7384 4 18.1991 4C14.6036 4 12.9856 5.61798 12.9856 8.58427C12.9856 11.191 12.9856 11.8202 12.9856 11.8202H10.4688V15.8652H12.9856V28H13.0755Z"/>
@@ -101,7 +177,12 @@
                             </div>
                             <span class="contact-label">Giusy Porru</span>
                         </a>
-                        <a href="https://www.instagram.com/eclettica___/" class="contact-method" target="_blank">
+                        <a href="https://www.instagram.com/eclettica___/" 
+                           class="contact-method" 
+                           target="_blank"
+                           rel="noopener"
+                           role="listitem"
+                           aria-label="Profilo Instagram Eclettica, si apre in una nuova finestra">
                             <div class="contact-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"
                                             fill="currentColor">
@@ -118,7 +199,10 @@
                             </div>
                             <span class="contact-label">@eclettica___</span>
                         </a>
-                        <a href="mailto:giusy.porru@libero.it" class="contact-method">
+                        <a href="mailto:giusy.porru@libero.it" 
+                           class="contact-method"
+                           role="listitem"
+                           aria-label="Invia email a giusy.porru@libero.it">
                             <div class="contact-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="4"></circle>
@@ -131,16 +215,19 @@
                 </section>
 
                 <!-- Orari -->
-                <section class="hours-section">
-                    <h2 class="section-title">Orari di apertura</h2>
-                    <span>Il negozio non ha orari fissi. Per visitare l'atelier basta prendere appuntamento al numero +39 339 733 5211</span>
+                <section class="hours-section" aria-labelledby="hours-title">
+                    <h2 id="hours-title" class="section-title">Orari di apertura</h2>
+                    <span role="text">Il negozio non ha orari fissi. Per visitare l'atelier basta prendere appuntamento al numero 
+                        <a href="tel:+393397335211" class="phone-link" aria-label="Chiama il numero 339 733 5211">+39 339 733 5211</a>
+                    </span>
                 </section>
                 
                 <!-- Mappa -->
-                <section class="map-section">
-                    <h2 class="section-title">Dove siamo</h2>
-                    <div class="map-container">
+                <section class="map-section" aria-labelledby="location-title">
+                    <h2 id="location-title" class="section-title">Dove siamo</h2>
+                    <div class="map-container" role="region" aria-label="Mappa di Google con la posizione del negozio">
                         <iframe 
+                            title="Mappa di Google che mostra la posizione del negozio in Via Conciliazione 26, Melegnano"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.9303010444736!2d9.319570676891752!3d45.35671177107373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c4e04f0c3ee1%3A0x6a7c47e5c6c42dd1!2sVia%20Conciliazione%2C%2026%2C%2020077%20Melegnano%20MI!5e0!3m2!1sen!2sit!4v1689241427428!5m2!1sen!2sit"
                             width="100%" 
                             height="450" 
@@ -150,13 +237,16 @@
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-                    <div class="address">
+                    <div class="address" role="contentinfo">
                         <p>Via Conciliazione, 26, 20077 Melegnano (MI)</p>
                     </div>
                 </section>               
             </div>
-        </div>
+        </main>
     </div>
+
+    <!-- Aggiungiamo uno skip link per saltare direttamente ai contenuti -->
+    <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
 
 <!-- JS -->
     <script>
@@ -199,6 +289,15 @@
             });
         });
 
+        // Aggiungiamo gestione della tastiera per l'accessibilità
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('sideMenu');
+                if (menu.classList.contains('open')) {
+                    toggleMenu();
+                }
+            }
+        });
         
     </script>
 </body>
