@@ -132,7 +132,7 @@ body {
 
 .bodyInnerContent {
     color: #e7e5e4;
-    font-family: DM Sans, sans-serif;
+    font-family: 'DM Sans';
     font-size: 1.25rem;
     line-height: 1.375;
     background-color: #101010;
@@ -400,7 +400,7 @@ body {
     line-height: 1.25;
     font-weight: 600;
     font-size: 2.8em;
-    font-family: "Satisfy", serif;
+    font-family: 'Satisfy';
     color: #d2b758;
 }
 
@@ -457,7 +457,7 @@ body {
 
 .storyInnerTitle, .story2InnerTitle {
     line-height: 1;
-    font-family: "Satisfy", serif;
+    font-family: 'Satisfy';
     color: #d2b758;
     font-size: 1.5em;
 }
