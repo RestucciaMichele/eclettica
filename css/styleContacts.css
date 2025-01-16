@@ -107,7 +107,7 @@
     border-radius: 0.5rem;
     margin-bottom: 2rem;
     color: #ffffff; /* Aumentiamo il contrasto */
-    font-family: 'DM Sans';
+    font-family: 'DM Sans', sans-serif;
     line-height: 1.375;
 }
 
@@ -151,7 +151,7 @@
     line-height: 1.25;
     font-weight: 600;
     font-size: 2.8em;
-    font-family: 'Satisfy';
+    font-family: 'Satisfy', sans-serif;
     color: #d2b758;
     text-align: center;
 }
