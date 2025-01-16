@@ -5,7 +5,7 @@ const urlsToCache = [
   '/contacts.html',
   '/css/styleIndex.css',
   '/css/styleContacts.css',
-  '/js/main.min.js',
+  '/js/main.js',
   '/images/logo_giusy_oro.png',
   '/images/logo_giusy_bianco.png'
 ];

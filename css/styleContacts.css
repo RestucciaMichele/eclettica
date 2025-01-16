@@ -1,3 +1,36 @@
+/* Font faces */
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/DMSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/DMSans-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/DMSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satisfy';
+    src: url('../fonts/Satisfy-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* navbar */
 .navbar {
     background: linear-gradient(to bottom, rgb(18, 18, 18) 0%, rgba(0,0,0,0) 100%);
@@ -6,12 +39,11 @@
 /* CONTACTS PAGE */
 .contacts-content {
     width: 100%;
-    height: 100dvh;
+    min-height: 100dvh; /* cambiato da height a min-height */
     display: flex;
     position: relative;
     max-width: 80dvw;
     margin: 0 auto;
-    
 }
 
 /* Layout base a due colonne */
@@ -20,7 +52,6 @@
     flex: 1;
     height: 100dvh;
     position: relative;
-    overflow: hidden;
     box-sizing: border-box;
     padding: 1rem;
     padding-top: 2rem;
@@ -29,12 +60,15 @@
 /* Colonna sinistra con immagine */
 .contacts-left {
     display: flex; 
-    flex-direction: column; 
+    flex-direction: column;
+    overflow: visible; /* Modificato da hidden a visible */
+    position: sticky; /* Cambiato da relative a sticky */
+    top: 0; /* Aggiunto per sticky positioning */
 }
 
 .contact-image-container {
     width: 100%;
-    height: 100dvh;
+    height: 100%;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -47,15 +81,14 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
+    /* rimosso position: absolute */
 }
 
 /* Colonna destra con contenuti */
 .contacts-right {
     overscroll-behavior: contain;
-    height: 100dvh;
+    height: auto; /* Cambiato da 100dvh a auto */
+    min-height: 100dvh;
     overflow-y: auto;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch; /* Per iOS */
@@ -158,12 +191,15 @@
 @media (max-width: 767px) {
     .contacts-content {
         flex-direction: column;
+        max-width: 100%;
     }
 
     .contacts-left {
         height: 40dvh; /* Cambiato da 50vh a 40vh */
         flex: none;
         padding-top: 1rem;
+        position: relative; /* Torniamo a relative per il mobile */
+        min-height: 300px; /* Aggiungiamo un'altezza minima */
     }
 
     .contact-image-container {
@@ -171,11 +207,9 @@
     }
 
     .contacts-right {
-        height: 60dvh; /* Cambiato da 50vh a 60vh per compensare */
-        flex: none;
-        position: relative; /* Per il posizionamento degli indicatori */
-        background-color: #101010; /* Sfondo nero */
-        padding-top: 0rem;
+        height: auto;
+        min-height: 60dvh;
+        padding-top: 0;
     }
 
     .contacts-right-scroll {

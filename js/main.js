@@ -1,4 +1,3 @@
-// ...existing code...
 
 // Registra Service Worker
 if ('serviceWorker' in navigator) {
